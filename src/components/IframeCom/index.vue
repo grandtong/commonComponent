@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       setting: {
-        src: "https://www.apple.com.cn/?afid=p238%7CqkDtXMcg_mtid_18707vxu38484&cid=aos-cn-kwba-brand-bz"
+        src: "https://m.baidu.com/"
       }
     }
   },
@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 .demo {
-  width: 100%;
+  width: 375px;
   height: 700px;
   box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(230, 230, 230, 1);
