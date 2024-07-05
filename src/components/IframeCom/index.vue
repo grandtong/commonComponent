@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       setting: {
-        src: "https://m.baidu.com/"
+        src: "https://www.apple.com.cn/?afid=p238%7CqkDtXMcg_mtid_18707vxu38484&cid=aos-cn-kwba-brand-bz"
       }
     }
   },
