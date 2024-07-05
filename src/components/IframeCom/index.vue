@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       setting: {
-        src: "https://www.apple.com.cn/"
+        src: "https://www.baidu.com"
       }
     }
   },
