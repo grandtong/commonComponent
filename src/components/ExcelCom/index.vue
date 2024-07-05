@@ -7,7 +7,7 @@
 --> 
 <template>
   <excel-export :bookType="bookType" :filename="filename" :sheet="sheet">
-    <div class="export-btn">Excel</div>
+    <div class="export-btn">demoExcel</div>
   </excel-export>
 </template>
 
