@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 .demo {
-  width: 375px;
+  width: 100%;
   height: 700px;
   box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(230, 230, 230, 1);
