@@ -1,13 +1,7 @@
-<!--
- * @Author: zouzheng
- * @Date: 2020-06-08 17:30:57
- * @LastEditors: zouzheng
- * @LastEditTime: 2020-06-09 09:21:50
- * @Description: 这是excel导出插件（页面）
---> 
+
 <template>
   <excel-export :bookType="bookType" :filename="filename" :sheet="sheet">
-    <div class="export-btn">导出文件</div>
+    <div class="export-btn">导出excel</div>
   </excel-export>
 </template>
 
