@@ -1,63 +1,96 @@
-
 <template>
-  <excel-export :bookType="bookType" :filename="filename" :sheet="sheet">
-    <div class="export-btn">导出excel</div>
-  </excel-export>
+  <a-table :columns="columns" :data-source="data">
+    <template #headerCell="{ column }">
+      <template v-if="column.key === 'name'">
+        <span>
+<!--          <smile-outlined />-->
+          Name
+        </span>
+      </template>
+    </template>
+
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.key === 'name'">
+        <a>
+          {{ record.name }}
+        </a>
+      </template>
+      <template v-else-if="column.key === 'tags'">
+        <span>
+          <a-tag
+                  v-for="tag in record.tags"
+                  :key="tag"
+                  :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
+          >
+            {{ tag.toUpperCase() }}
+          </a-tag>
+        </span>
+      </template>
+      <template v-else-if="column.key === 'action'">
+        <span>
+          <a>Invite 一 {{ record.name }}</a>
+          <a-divider type="vertical" />
+          <a>Delete</a>
+          <a-divider type="vertical" />
+          <a class="ant-dropdown-link">
+            More actions
+<!--            <down-outlined />-->
+          </a>
+        </span>
+      </template>
+    </template>
+  </a-table>
 </template>
+<script lang="ts" setup>
+  // import { SmileOutlined, DownOutlined } from 'ant-design-vue/icons-vue';
+  const columns = [
+    {
+      name: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Tags',
+      key: 'tags',
+      dataIndex: 'tags',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+    },
+  ];
 
-<script>
-import { ExcelExport } from 'pikaz-excel-js'
-export default {
-  props: {},
-  components: { ExcelExport },
-  data () {
-    return {
-      bookType: 'xlsx',
-      filename: '组件demo',
-      sheet: [
-        {
-          title: '组件信息',
-          tHeader: ['作者', '语言', '组件用途'],
-          table: [{ author: 'pikaz', language: 'javascript', application: '导出表格' }],
-          keys: ['author', 'language', 'application'],
-          sheetName: '插件信息',
-          cellStyle: [
-            {
-              cell: 'A1',
-              font: {
-                sz: 14,
-                color: { rgb: "ffffff" },
-                bold: true,
-              },
-              fill: {
-                fgColor: { rgb: "ff7e00" },
-              }
-            }
-          ]
-        }
-      ]
-    }
-  },
-  created () {
-  },
-  mounted () {
-  },
-  methods: {},
-  computed: {},
-  watch: {},
-}
+  const data = [
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+  ];
 </script>
-
-<style scoped>
-.export-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  height: 30px;
-  background: #ff7e00;
-  border-radius: 5px;
-  color: #ffffff;
-  cursor: pointer;
-}
-</style>
