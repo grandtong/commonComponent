@@ -24,7 +24,7 @@ git push -u origin master
 之后提交git，只需写在package.json中的命令中即可
 ```js
 "scripts": {
-  "push": "node script.js && npm run lib && git add . && git commit -m 'commit' && git push"
+  "push": "npm run lib && git add . && git commit -m 'commit' && git push"
   }
 ```
 
