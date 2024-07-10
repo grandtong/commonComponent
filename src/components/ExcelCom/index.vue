@@ -1,5 +1,5 @@
 <template>
-  <Table :columns="columns" :data-source="data">
+  <a-table :columns="columns" :data-source="data">
     <a slot="name" slot-scope="text">{{ text }}</a>
     <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
     <span slot="tags" slot-scope="tags">
@@ -18,7 +18,7 @@
       <a-divider type="vertical" />
       <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
     </span>
-  </Table>
+  </a-table>
 </template>
 <script>
   import { Table } from 'ant-design-vue';
