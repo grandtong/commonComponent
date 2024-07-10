@@ -1,53 +1,32 @@
 <template>
   <a-table :columns="columns" :data-source="data">
-    <template #headerCell="{ column }">
-      <template v-if="column.key === 'name'">
-        <span>
-<!--          <smile-outlined />-->
-          Name
-        </span>
-      </template>
-    </template>
-
-    <template #bodyCell="{ column, record }">
-      <template v-if="column.key === 'name'">
-        <a>
-          {{ record.name }}
-        </a>
-      </template>
-      <template v-else-if="column.key === 'tags'">
-        <span>
-          <a-tag
-                  v-for="tag in record.tags"
-                  :key="tag"
-                  :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
-          >
-            {{ tag.toUpperCase() }}
-          </a-tag>
-        </span>
-      </template>
-      <template v-else-if="column.key === 'action'">
-        <span>
-          <a>Invite 一 {{ record.name }}</a>
-          <a-divider type="vertical" />
-          <a>Delete</a>
-          <a-divider type="vertical" />
-          <a class="ant-dropdown-link">
-            More actions
-<!--            <down-outlined />-->
-          </a>
-        </span>
-      </template>
-    </template>
+    <a slot="name" slot-scope="text">{{ text }}</a>
+    <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
+    <span slot="tags" slot-scope="tags">
+      <a-tag
+              v-for="tag in tags"
+              :key="tag"
+              :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
+      >
+        {{ tag.toUpperCase() }}
+      </a-tag>
+    </span>
+    <span slot="action" slot-scope="text, record">
+      <a>Invite 一 {{ record.name }}</a>
+      <a-divider type="vertical" />
+      <a>Delete</a>
+      <a-divider type="vertical" />
+      <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
+    </span>
   </a-table>
 </template>
-<script lang="ts" setup>
-  // import { SmileOutlined, DownOutlined } from 'ant-design-vue/icons-vue';
+<script>
   const columns = [
     {
-      name: 'Name',
       dataIndex: 'name',
       key: 'name',
+      slots: { title: 'customTitle' },
+      scopedSlots: { customRender: 'name' },
     },
     {
       title: 'Age',
@@ -63,10 +42,12 @@
       title: 'Tags',
       key: 'tags',
       dataIndex: 'tags',
+      scopedSlots: { customRender: 'tags' },
     },
     {
       title: 'Action',
       key: 'action',
+      scopedSlots: { customRender: 'action' },
     },
   ];
 
@@ -93,4 +74,13 @@
       tags: ['cool', 'teacher'],
     },
   ];
+
+  export default {
+    data() {
+      return {
+        data,
+        columns,
+      };
+    },
+  };
 </script>
