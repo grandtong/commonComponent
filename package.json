@@ -6,7 +6,7 @@
   "scripts": {
     "lib": "vue-cli-service build --target lib --name pikaz-compoment --dest lib src/index.js",
     "serve": "vue-cli-service serve",
-    "push": "node script.js && npm run lib && git add . && git commit -m 'commit' && git push"
+    "push": "npm run lib && git add . && git commit -m 'commit' && git push"
   },
   "dependencies": {
     "ant-design-vue": "^1.7.8",
